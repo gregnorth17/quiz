@@ -1,0 +1,22 @@
+.intro {
+	text-align: center;
+}
+
+.intro-title {
+	color: #293264;
+}
+
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1em;
+}
+
+.score {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	color: #293264;
+	font-size: 1.25rem;
+}

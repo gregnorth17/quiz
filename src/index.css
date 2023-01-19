@@ -1,0 +1,33 @@
+body {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: url(./images/blob.png) top right no-repeat, url(./images/blob2.png) bottom left no-repeat
+}
+
+label:hover,
+.btn {
+	cursor: pointer;
+}
+
+.btn:hover {
+	opacity: .7;
+}
+
+
+.btn {
+	padding: .75em 3em;
+	background: #4D5B9E;
+	color: #fff;
+	border: none;
+	border-radius: 15px;
+	margin: 0 auto;
+	display: inline;
+}
+
+.check {
+	display: flex;
+	/* margin-top: 2em; */
+}
+
