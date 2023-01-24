@@ -1,6 +1,7 @@
 import "./question.css";
+// import { useState } from "react";
 
-const Question = ({answersChecked, setQuestions, question, questionIndex}) => {
+const Question = ({answersChecked, setQuestions, question, questionIndex, restart}) => {
 	
 	const replaceCommas = (str) => {
 		return str.replace(/&quot;|&#039;|&eacute;/g, "'");
@@ -9,6 +10,8 @@ const Question = ({answersChecked, setQuestions, question, questionIndex}) => {
 	const handleChange = (event, questionIndex) => {
     const {name, value} = event.target;
 
+		console.log(event.target.checked)
+		if(restart) {event.target.checked = false}
     setQuestions(prevQuestionsArr => {
 			return prevQuestionsArr.map(prevQuestionObj => {
 				if(prevQuestionObj.id === questionIndex) {
@@ -31,6 +34,8 @@ const Question = ({answersChecked, setQuestions, question, questionIndex}) => {
 			
 			const correct = answersChecked && answer === correctAnswer  ? "correct" : "";
 			const incorrect = answersChecked && answer !== correctAnswer && question[userAnswer] === answer ? "incorrect" : "";
+			const addGrey = answersChecked && !correct && !incorrect ? "addGrey" : "";
+			const white = question[userAnswer] === answer ? "white" : ""; 
 
 			return (
 				<>
@@ -39,9 +44,9 @@ const Question = ({answersChecked, setQuestions, question, questionIndex}) => {
 									name={`userAnswer${questionIndex}`}
 									value={answer}
 									id={`${questionIndex}${answerIndex}`}
-									className="input"				
+									// checked={userAnswer === answer}
 					/>
-					<label className={`answer ${correct} ${incorrect}`} htmlFor={`${questionIndex}${answerIndex}`}>{replaceCommas(answer)}</label>
+					<label className={`answer ${white} ${correct} ${incorrect} ${addGrey}`} htmlFor={`${questionIndex}${answerIndex}`}>{replaceCommas(answer)}</label>
 				</>
 			)
 		})

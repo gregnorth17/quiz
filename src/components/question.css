@@ -34,15 +34,15 @@
 	/* background: red; */
 }
 
-/* .input:checked + .answer {
+/* input[type="radio"]:checked+.answer {
 	background: #D6DBF5;
 	border: 0.794239px solid transparent;
 } */
 
-input[type="radio"]:checked+.answer {
+/* input:checked + .answer {
 	background: #D6DBF5;
 	border: 0.794239px solid transparent;
-}
+} */
 
 input[type="radio"] {
 	opacity: 0;
@@ -50,12 +50,25 @@ input[type="radio"] {
 	width: 0;
 }
 
+.white {
+	background: #D6DBF5;
+}
+
+.correct,
+.incorrect {
+	border: 0.794239px solid transparent;
+}
+
 .correct {
 	background: #94D7A2 !important;
-	border: 0.794239px solid transparent;
 }
 
 .incorrect {
 	background: #F8BCBC !important; 
 	color: grey;
+}
+
+.addGrey {
+	color: grey;
+	border: 0.794239px solid grey;
 }

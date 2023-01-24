@@ -1,22 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Question from "./components/Question";
 
 function App() {
 
 	// restart game
-	// change answered colours to grey
 	
 
 	const [questions, setQuestions] = useState([])
 	const [answersChecked, setAnswersChecked] = useState(false);
 	const [score, setScore] = useState(0);
 	const [start, setStart] = useState(false);
+	const [restart, setRestart] = useState((false))
 
 
 	useEffect(() => {
 		// startQuiz();
 	},[])
+
+	const formRef = useRef();
 
 	const startQuiz = async () => {
 		const response = await fetch("https://opentdb.com/api.php?amount=5&type=multiple");
@@ -41,7 +43,13 @@ function App() {
 		setStart(true)
 		setScore(0);
 		setAnswersChecked(false)
+		// setRestart(true)
 	}
+
+	// const handleSubmit = (event) => {
+	// 	event.preventDefault();
+	// 	formRef.current.reset();
+	// }
 
 	const checkAnswers = () => {
 
@@ -62,7 +70,7 @@ function App() {
 	const questionsHTML = questions.map((question, questionIndex) => {
 		return (
 			<>
-				<Question id={questionIndex} setScore={setScore} checkAnswers={checkAnswers} answersChecked={answersChecked} questions={questions} setQuestions={setQuestions} question={question} questionIndex={questionIndex}  />
+				<Question restart={restart} id={questionIndex} setScore={setScore} checkAnswers={checkAnswers} answersChecked={answersChecked} questions={questions} setQuestions={setQuestions} question={question} questionIndex={questionIndex}  />
 			</>
 		)
 	})
@@ -72,7 +80,7 @@ function App() {
 			{
 				!start ?
 
-				<div className="intro">
+				<div className="intro ">
 					<h1 className="intro-title">Quizzical</h1>
 					<p className="intro-text">Can you answer 5 random questions?</p>
 					<button className="btn" onClick={startQuiz}>Start quiz</button>
@@ -84,7 +92,7 @@ function App() {
 					<div className="questions">
 						{questionsHTML}
 					</div>
-					<div className="buttons">
+					<div>
 						{ answersChecked && <span className="score">{`You scored ${score}/5 correct answers`}</span> }
 						{ 
 							answersChecked ?
