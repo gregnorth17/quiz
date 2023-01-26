@@ -1,17 +1,59 @@
+import { useState } from "react";
 import "./question.css";
-// import { useState } from "react";
 
-const Question = ({answersChecked, setQuestions, question, questionIndex, restart}) => {
-	
+const Question = ({setOldAnswer, answersChecked, setQuestions, question, questionIndex, restart}) => {
+	const [checked, setChecked] = useState({ apple: true, orange: false });
+
+  // const changeRadio = (e) => {
+  //   setChecked(() => {
+  //     return {
+  //       apple: false,
+  //       orange: false,
+  //       [e.target.value]: true
+  //     };
+  //   });
+  // };
+
+  // return (
+  //   <>
+  //     <button
+  //       onClick={() => setChecked(() => ({ apple: false, orange: false }))}
+  //     >
+  //       uncheck
+  //     </button>
+  //     <label>
+  //       <input
+  //         type="radio"
+  //         checked={checked.apple}
+  //         value="apple"
+  //         name="choice"
+  //         onChange={changeRadio}
+  //       />
+  //       apple
+  //     </label>
+
+  //     <label>
+  //       <input
+  //         type="radio"
+  //         checked={checked.orange}
+  //         value="orange"
+  //         name="choice"
+  //         onChange={changeRadio}
+  //       />
+  //       orange
+  //     </label>
+  //   </>
+	// )
 	const replaceCommas = (str) => {
 		return str.replace(/&quot;|&#039;|&eacute;/g, "'");
 	}
 
 	const handleChange = (event, questionIndex) => {
     const {name, value} = event.target;
-
-		console.log(event.target.checked)
-		if(restart) {event.target.checked = false}
+		console.log(event.target);
+		// const checked = event.target.checked ? value : null; 
+		console.log(event.target);
+		// setOldAnswer(checked);
     setQuestions(prevQuestionsArr => {
 			return prevQuestionsArr.map(prevQuestionObj => {
 				if(prevQuestionObj.id === questionIndex) {
@@ -35,7 +77,9 @@ const Question = ({answersChecked, setQuestions, question, questionIndex, restar
 			const correct = answersChecked && answer === correctAnswer  ? "correct" : "";
 			const incorrect = answersChecked && answer !== correctAnswer && question[userAnswer] === answer ? "incorrect" : "";
 			const addGrey = answersChecked && !correct && !incorrect ? "addGrey" : "";
-			const white = question[userAnswer] === answer ? "white" : ""; 
+			// const white = question[userAnswer] === answer ? "white" : "";
+			// const selected = question[userAnswer] ? "selected" : "";
+			// const unselected = question[userAnswer] === "" ? "unselected" : "";
 
 			return (
 				<>
@@ -44,9 +88,11 @@ const Question = ({answersChecked, setQuestions, question, questionIndex, restar
 									name={`userAnswer${questionIndex}`}
 									value={answer}
 									id={`${questionIndex}${answerIndex}`}
-									// checked={userAnswer === answer}
+									// checked={false}
+									required={true}
 					/>
-					<label className={`answer ${white} ${correct} ${incorrect} ${addGrey}`} htmlFor={`${questionIndex}${answerIndex}`}>{replaceCommas(answer)}</label>
+					<label className={`answer ${correct} ${incorrect} ${addGrey}`} htmlFor={`${questionIndex}${answerIndex}`}>{replaceCommas(answer)}</label>
+					
 				</>
 			)
 		})

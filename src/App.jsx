@@ -12,6 +12,7 @@ function App() {
 	const [score, setScore] = useState(0);
 	const [start, setStart] = useState(false);
 	const [restart, setRestart] = useState((false))
+	// const [oldAnswer, setOldAnswer] = useState(undefined)
 
 
 	useEffect(() => {
@@ -43,7 +44,7 @@ function App() {
 		setStart(true)
 		setScore(0);
 		setAnswersChecked(false)
-		// setRestart(true)
+		setRestart(true)
 	}
 
 	// const handleSubmit = (event) => {
