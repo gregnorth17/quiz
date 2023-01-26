@@ -39,10 +39,10 @@
 	border: 0.794239px solid transparent;
 } */
 
-/* input:checked + .answer {
+input:checked + .answer {
 	background: #D6DBF5;
 	border: 0.794239px solid transparent;
-} */
+}
 
 input[type="radio"] {
 	opacity: 0;
@@ -50,9 +50,9 @@ input[type="radio"] {
 	width: 0;
 }
 
-.white {
+/* .white {
 	background: #D6DBF5;
-}
+} */
 
 .correct,
 .incorrect {
